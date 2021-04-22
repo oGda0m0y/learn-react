@@ -1,0 +1,21 @@
+React 简介:
+
+	react 是一个用于构建用户界面的 javascript 库
+	react 主要用于构建UI, 很多人认为 react 是 MVC 中的 V (视图)
+	react 起源于 facebook 的内部项目, 用来建设 instagram 的网站, 并于2013年5月开源
+	react 拥有较高的性能, 代码逻辑非常简单, 越来越多的人已开始关注和使用它
+
+React 特点:
+	1. 声明式设计 - 声明范式
+	2. 高效 - DOM模拟
+	3. 灵活 - 与现有库和框架配合
+	4. JSX - javascript的语法扩展
+	5. 组件 - 构建组件
+	6. 单向响应的数据流
+
+React 引用:
+	<head>
+		<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+		<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+		<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+	</head>

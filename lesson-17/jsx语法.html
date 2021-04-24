@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+
+	<head>
+		<title>jsx语法</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="author" content="chen">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+		<!--<link rel="stylesheet" type="css/text" media="screen and ( min-width: 1200px )" href="">-->
+		<link rel="stylesheet" type="text/css" media="screen" href="">
+		<script defer="defer" src=""></script>
+		<style>
+			/*@import url("css/name.css") screen and ( min-width: 1200px );*/
+		</style>
+	</head>
+	
+	<body>
+		<div id="app"></div>
+		<script>
+			// 分享项目:
+			// 1. 可以只分享项目文件和 package.json , 其中的包依赖可以使用 npm 安装
+			// 2. 接收到分享的项目后, 移动 package.json 到自己的项目目录 切换到目录, 用 npm install 命令安装即可
+			// 3. 如果使用了 react框架 需要引用包: react, react-dom, babel
+
+			// 插入数据:
+			// 1. 在 react框架中, 都是用 const 来定义变量
+			// 2. 插入的内容中使用变量的方法是使用 {} , 如下:
+			const person = {
+				name: "dream",
+				age: 18,
+				sex: "man"
+			}
+
+			const element = (
+				<div>
+					<h1> Person 信息 </h1>
+					<h2> 名字: {person.name} </h2>
+					<h2> 年龄: {person.age} </h2>
+					<h2> 性别: {person.sex} </h2>
+				</div>
+			)
+
+			// element 在这里可以称作一个组件, 但其实是一个变量
+			// element 组件内的语法规则是 jsx:
+			// 1. jsx 插入数据使用 {} , 可以是字符串, html代码, 即时函数, 数据, 唯一表达式
+			// 2. jsx 插入的数据如果是数组内的元素, 需要进行属性绑定, 即指定 key 值, 如下:
+			// 3. 因为jsx中的js代码块只能是唯一的表达式, 不能进行判断, 所以可以使用箭头函数来实现额外判断, 如下:
+
+			const element1 = (
+				<ul>
+                    {
+                        arr.length >0 && arr.map((item,index)=>{
+                            // li标签的是属性绑定, 指定 key
+                            return (
+                                <li
+                                    key={index}
+                                    className="red"
+                                    a="http://baidu.com"
+                                    title="标题">
+                                    {item}
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+			)
+
+			// 4. 表达式可以是函数自执行表达式, (function(){})(), 然后可以在函数里自由书写js代码, 如下:
+
+			const element2 = (
+				<div>
+                    {
+                        (function () {
+                            if( person.sex ) return <h2>女</h2>;
+                            return <h2>男</h2>
+                        })()
+                    }
+                </div>
+			)
+
+			// 5. 可以是数组, 直接写数组名就可以, 数组会自动展开. 如下:
+
+			const element3 = (
+				<div>
+                    {
+                        arr
+                    }
+                </div>
+			)
+
+			// 6. 样式的书写, 可以在 <style></style> 中书写, 但不能使用行内样式的 style="" , 标准的框架语法写法见截图
+			// 6.1 定义一个样式对象
+			const styles = {
+				background: "blue",
+				color: "yellow"
+				// ...
+			}
+			// 6.2 利用行内样式引入定义的样式对象
+			const element4 = (
+				<div>
+					<span style = {styles}></span>
+				</div>
+			)
+
+
+			ReactDOM.render(
+				element, document.getElementById("app")
+			)
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+
+	<head>
+		<title>事件绑定(事件处理)</title>
+		<meta charset="utf-8">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="author" content="chen">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+		<!--<link rel="stylesheet" type="css/text" media="screen and ( min-width: 1200px )" href="">-->
+		<link rel="stylesheet" type="text/css" media="screen" href="">
+		<script defer="defer" src=""></script>
+		<style>
+			/*@import url("css/name.css") screen and ( min-width: 1200px );*/
+		</style>
+	</head>
+	
+	<body>
+		<div id="app"></div>
+		<script>
+			
+
+			// jsx 语法中绑定的事件会自动执行, 比如onclick, 即使没有点击也会执行绑定的函数
+			// 要实现在事件触发的时候才执行要使用箭头函数或者function.bind(), 注意.bind()的参数列表第一个为this, 后面的才是参数
+
+			// 调用的函数的最后一个参数是事件对象event, 前面的才是传入的参数, 注意参数顺序, 不要搞错了
+			function handleclick(data, e) {
+				// ...
+				console.log("handleclick", data, e.target);
+			}
+			const element = (
+				<div>
+					<h1></h1>
+					<input type="button" onclick={alert(自执行)}/>
+					<input type="button" onclick={()=>{alert(自执行)}}/>
+					<input type="button" onclick={handleclick}/>
+					<input type="text" defaultValue="..." onclick={handleclick}/>
+					<input type="text" defaultValue="事件调用函数" onclick={handleclick.bind(this, "这是实参")}/>
+				</div>
+			)
+
+			ReactDOM.render(
+				element,
+				document.getElementById("app")
+			)
+		</script>
+	</body>
+
+</html>

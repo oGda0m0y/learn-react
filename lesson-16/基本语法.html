@@ -1,27 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hans-CN">
+    <head>
+        <title>基本语法</title>
+        <meta charset="utf-8" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="chen" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1" />
+        <!--
+            <link rel="stylesheet" type="css/text" media="screen and ( min-width: 1200px )" href="">
+        -->
+        <link rel="stylesheet" type="text/css" media="screen" href="" />
+        <script defer="defer" src=""></script>
+        <style>
+            /*@import url("css/name.css") screen and ( min-width: 1200px );*/
+        </style>
+        <!-- 引入react和react-dom, 也可以使用npm(node.js)安装到本地引用 -->
+        <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+        <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+        <!--
+            react框架代码如果要在浏览端预览, 需要使用babel进行编译, 需要引入babel
+            注意: 在浏览器中使用babel来编译JSX效率是非常低的, 生产环境中不建议使用
+        -->
+        <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+        <!--
+            	官方提供的CDN地址
+            <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+            <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+            <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        -->
+    </head>
 
-	<head>
-		<title>基本语法</title>
-		<meta charset="utf-8">
-		<meta name="keywords" content="">
-		<meta name="description" content="">
-		<meta name="author" content="chen">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
-		<!--<link rel="stylesheet" type="css/text" media="screen and ( min-width: 1200px )" href="">-->
-		<link rel="stylesheet" type="text/css" media="screen" href="">
-		<script defer="defer" src=""></script>
-		<style>
-			/*@import url("css/name.css") screen and ( min-width: 1200px );*/
-		</style>
-	</head>
-	
+    <body>
+        <div id="element1"></div>
+        <script type="text/babel">
+        // 如果我们需要使用 JSX，则 <script> 标签的 type 属性需要设置为 text/babel
+		// React.render(需要添加的html代码块, 需要插入到的节点, 回调函数)
+		// 注意: 第一个参数的html代码块只能够右一个根节点(容器), 所有的框架都是
+            ReactDOM.render(
+                <h1>
+				<span>Hello React</span>
+				<span>Hello React</span>
+			</h1>,
+                document.getElementById("element1")
+            );
+        </script>
+	</body>
+	<!--
 	<body>
-		
-		<script>
-			
+		<script type="text/babel">
+			const element2 = (
+                <h1>
+				<span>Hello React</span>
+				<span>Hello React</span>
+                </h1>
+            );
+			ReactDOM.render(
+				element2, document.getElementById("element1")
+			)
 		</script>
 	</body>
-
+	-->
 </html>

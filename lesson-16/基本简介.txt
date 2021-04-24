@@ -1,5 +1,4 @@
 React 简介:
-
 	react 是一个用于构建用户界面的 javascript 库
 	react 主要用于构建UI, 很多人认为 react 是 MVC 中的 V (视图)
 	react 起源于 facebook 的内部项目, 用来建设 instagram 的网站, 并于2013年5月开源
@@ -19,3 +18,15 @@ React 引用:
 		<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
 		<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
 	</head>
+
+通过 npm 使用 React:
+	
+	国内使用 npm 速度很慢，你可以使用淘宝定制的 cnpm (gzip 压缩支持) 命令行工具代替默认的 npm:
+		$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+		$ npm config set registry https://registry.npm.taobao.org
+	
+	这样就可以使用 cnpm 命令来安装模块了：
+		$ cnpm install [name]
+	
+	配置后可通过下面方式来验证是否成功:
+		$ npm config get registry

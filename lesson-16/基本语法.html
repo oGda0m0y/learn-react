@@ -33,7 +33,8 @@
     </head>
 
     <body>
-        <div id="element1"></div>
+        <div id="app1"></div>
+        <div id="app2"></div>
         <script type="text/babel">
         // 如果我们需要使用 JSX，则 <script> 标签的 type 属性需要设置为 text/babel
 		// React.render(需要添加的html代码块, 需要插入到的节点, 回调函数)
@@ -43,23 +44,19 @@
 				<span>Hello React</span>
 				<span>Hello React</span>
 			</h1>,
-                document.getElementById("element1")
+                document.getElementById("app1")
             );
         </script>
-	</body>
-	<!--
-	<body>
 		<script type="text/babel">
-			const element2 = (
+			const element = (
                 <h1>
 				<span>Hello React</span>
 				<span>Hello React</span>
                 </h1>
             );
 			ReactDOM.render(
-				element2, document.getElementById("element1")
+				element, document.getElementById("app2")
 			)
 		</script>
 	</body>
-	-->
 </html>

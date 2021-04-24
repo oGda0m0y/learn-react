@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+
+<head>
+    <title>无状态组件</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="chen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+    <!--<link rel="stylesheet" type="css/text" media="screen and ( min-width: 1200px )" href="">-->
+    <link rel="stylesheet" type="text/css" media="screen" href="">
+    <script defer="defer" src=""></script>
+    <style>
+        /*@import url("css/name.css") screen and ( min-width: 1200px );*/
+    </style>
+    <!-- 引入react和react-dom, 也可以使用npm(node.js)安装到本地引用 -->
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!--
+        react框架代码如果要在浏览端预览, 需要使用babel进行编译, 需要引入babel
+        注意: 在浏览器中使用babel来编译JSX效率是非常低的, 生产环境中不建议使用
+    -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="abc"></div>
+    <script type="text/babel">
+
+        // 事实上, 此 element 组件只是一个普通变量, 是没有状态的, 不能称作是组件
+        // 我们区分 element 变量有没有称为组件是看 element 变量是否有状态
+        // 是么是状态, 就是数据驱动视图的响应式数据, 即 状态 = 数据
+        // 数据是请求后端返回的, 可以是字符串, 数组, json
+        // 为了方便管理这些数据, 我们把他们统一存放在 state = {}
+        // state = { array:[], title:'', descrip:'' }
+
+        // 一个项目由多个页面组成, 并且这些页面需要数据互联(网络互联)
+        // 我们可以使用 js库 去管理这些数据, 方便在每个页面请求最新的数据(页面通讯)
+        // 比如 redux js库 能帮我们去管理大量的数据, 可以在每个页面都方便的调取 redux 里面的数据
+
+        let str = 'dream'
+
+        let element = (
+            <div>{str}</div>
+        )
+
+        ReactDOM.render(
+            element,
+            document.querySelector('#abc')
+        )
+
+        setTimeout(()=>{
+            str = '追梦'
+        },2000)
+
+        // 这里的实例并没有按照预想中的在定时器计时结束后更新节点的内容, 被称为 "无状态组件"
+    </script>
+</body>
+
+</html>

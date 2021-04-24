@@ -15,6 +15,14 @@
 		<style>
 			/*@import url("css/name.css") screen and ( min-width: 1200px );*/
 		</style>
+		<!-- 引入react和react-dom, 也可以使用npm(node.js)安装到本地引用 -->
+        <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+        <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+        <!--
+            react框架代码如果要在浏览端预览, 需要使用babel进行编译, 需要引入babel
+            注意: 在浏览器中使用babel来编译JSX效率是非常低的, 生产环境中不建议使用
+        -->
+        <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
 	</head>
 	
 	<body>

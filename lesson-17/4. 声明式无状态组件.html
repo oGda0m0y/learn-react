@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+
+<head>
+    <title>声明式无状态组件</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="chen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+    <!--<link rel="stylesheet" type="css/text" media="screen and ( min-width: 1200px )" href="">-->
+    <link rel="stylesheet" type="text/css" media="screen" href="">
+    <script defer="defer" src=""></script>
+    <style>
+        /*@import url("css/name.css") screen and ( min-width: 1200px );*/
+    </style>
+    <!-- 引入react和react-dom, 也可以使用npm(node.js)安装到本地引用 -->
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!--
+        react框架代码如果要在浏览端预览, 需要使用babel进行编译, 需要引入babel
+        注意: 在浏览器中使用babel来编译JSX效率是非常低的, 生产环境中不建议使用
+    -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="abc"></div>
+    <div id="state"></div>
+    <script type="text/babel">
+        // 开发项目 最好把每个部分 拆分成 一个个独立的小区块，能多小就多小
+        // 为什么？因为可以重用（css重用）, 需要用的时候直接引入
+
+        // 变量组件(无状态组件), 因为没有状态, 事实上不能被称作组件
+        const hd = (
+            <header> 无状态组件, 变量组件, 这是页面头部 </header>
+        )
+
+        const main = (
+            <main> 无状态组件, 变量组件, 这是页面主体内容 </main>
+        )
+
+        const ft = (
+            <footer> 无状态组件, 变量组件, 这是页面底部 </footer>
+        )
+
+        // 有名函数组件(无状态组件), 因为没有状态, 事实上不能被称作组件
+        function Head(){
+            return (
+                <header> 无状态组件, 有名函数组件, 这是页面头部 </header>
+            )
+        }
+
+        function Main(){
+            return (
+                <main> 无状态组件, 有名函数组件, 这是页面主体内容 </main>
+            )
+        }
+
+        function Foot(){
+            return (
+                <footer> 无状态组件, 有名函数组件, 这是页面底部 </footer>
+            )
+        }
+
+        let element = (
+            <div>
+                {hd}
+                {main}
+                {ft}
+                <hr />
+                <Head></Head>
+                <Main></Main>
+                <Foot></Foot>
+                <hr />
+            </div>
+        )
+
+        ReactDOM.render(
+            element,
+            document.querySelector('#abc')
+        )
+    </script>
+    <script type="text/babel">
+        // 有状态组件
+
+        // 定义 Head2 组件 继承自 React.Component组件
+        // 那么就可以去调用 React.Component组件所提供的方法或属性, 这便有了状态
+        class Head2 extends React.Component {
+            constructor(){
+                super()  // 执行父类的构造函数要使用 super()
+                this.name = 'dream'
+                this.age = 18
+            }
+            // 类中定义方法不用写 function 关键字
+            say(){
+                console.log('say方法')
+            }
+            render(){ // 渲染
+                return (
+                    <header> 有状态组件, 类组件, 这是页面头部 </header>
+                )
+            }
+        }
+
+        let element2 = (
+            <div>
+                <Head2></Head2>
+            </div>
+        )
+
+        ReactDOM.render(
+            element2,
+            document.querySelector('#state')
+        )
+    </script>
+</body>
+
+</html>

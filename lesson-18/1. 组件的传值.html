@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+
+<head>
+    <title>组件的传值</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="chen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+    <!--<link rel="stylesheet" type="css/text" media="screen and ( min-width: 1200px )" href="">-->
+    <link rel="stylesheet" type="text/css" media="screen" href="">
+    <script defer="defer" src=""></script>
+    <style>
+        /*@import url("css/name.css") screen and ( min-width: 1200px );*/
+    </style>
+    <!-- 引入react和react-dom, 也可以使用npm(node.js)安装到本地引用 -->
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <!--
+        react框架代码如果要在浏览端预览, 需要使用babel进行编译, 需要引入babel
+        注意: 在浏览器中使用babel来编译JSX效率是非常低的, 生产环境中不建议使用
+    -->
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="abc"></div>
+    <script type="text/babel">
+        
+        // 我们可以右两种方式定义组件, 注意组件名开头必须大写
+        // 1. 类似构造函数的方法: function Head() {}
+        // 2. 定义React.Component的继承类: class Head extends React.Component {}
+        // 推荐使用第2种方法, 这样我们就可以调用 React.Component 组件所提供的 方法或属性
+
+        class Head extends React.Component {
+            constructor(props){
+                // 如果 不在 constructor 构造函数里面使用实例对象上的 props(this.props) 可以不写 props形参
+                super(props)  // 如果需要执行父类的方法需要使用 super()
+
+                // this 指向 Head
+                //this.name = 'dream'
+                //this.age = 18
+
+                // react 组件两个非常重要的概念, state 和 props
+                // 在生产环境中, state 对象里面的数据是从后端返回的
+                // state 对象用来存放响应式数据, react 检测到其发生改变会重新调用 render() 进行渲染, 也就实现了响应式数据
+                // 更新 state 的数据只能使用 setState(key: val)方法而不能直接给对象赋值
+
+                /*
+                这种方法是错误的
+                this.state = {
+                    abc: this.props.text
+                }
+                */
+
+                //this.handleClick2 = this.handleClick2.bind(this)
+
+                setTimeout(()=>{
+                    this.setState({
+                        abc: '构造函数 -> 定时器 -> 更新state对象'
+                    })
+                },4000)
+            }
+
+            // 在类中定义的方法不要写 funtion 关键词
+            // 在jsx的类中是可以直接定义属性的, 但是在es6(js)的类中是不可以的, 只能定义方法
+            say(){
+                console.log('say方法')
+            }
+
+            // 创建state对象, 读取传入的数据
+            state = {
+                abc: this.props.text
+            }
+
+            // 方法1: 绑定事件并传参, 注意用.bind调用时要改变this指向
+            handleClick1(myData,e){
+                console.log('方法1: 利用.bind, 绑定事件并传参')
+                console.log('this: ', this, '传入的参数: ', myData, '事件源: ', e.target)
+            }
+
+            handleClick2(){
+                console.log('方法2: 普通方法, 只绑定事件, 不能传参')
+                console.log('this', this)
+            }
+
+            handleClick = () => {
+                console.log('绑定事件源实现点击时更新数据')
+                console.log('this', this)
+                this.setState({
+                    abc: '值已被改变'
+                })
+
+            }
+            handleClick3 (myData,e) {
+                console.log('方法3: 利用箭头函数, 绑定事件并传参')
+                console.log('this: ', this, '传入的参数: ', myData, '事件源: ', e.target)
+            }
+            render(){ // 渲染
+                // console.log(this)
+                return (
+                    <div>
+                        {
+                            // 绑定事件源实现点击时更新数据
+                        }
+                        <h2 onClick={this.handleClick}> 读取state对象: { this.state.abc && this.state.abc } </h2>
+                        
+
+                        {
+                            // 对渲染的元素进行事件绑定并传参
+                            // 1. 利用.bind, 因为不自动执行, 此方法还可以传参
+                            // .bind的第一个参数是 函数的内部this指向
+                            // 第二个参数是 数据
+                            // 最后一个参数是 事件对象
+                        }
+                        {//<header onClick={this.handleClick1.bind(this,'方法1: 利用.bind, 可以绑定事件并传参',e)}> { this.state.abc && this.state.abc } </header>
+                        }
+                        {
+                            // 对渲染的元素进行事件绑定
+                            // 2. 普通方法, 直接指定函数名, 但不适合传参, 因为一旦加括号就绘制自动执行
+                        }
+                        <header onClick={this.handleClick2}> { this.state.abc && this.state.abc } </header>
+                        
+                        
+                        {
+                            // 对渲染的元素进行事件绑定
+                            // 3. 利用箭头函数, 因为箭头函数不会自动执行
+                        }
+                        {//<header onClick={(e)=>{ this.handleClick3('方法3: 利用箭头函数, 可以绑定事件并传参',e) }}> { this.state.abc && this.state.abc } </header>
+                        }
+
+                    </div>
+
+                )
+            }
+        }
+
+        let element = (
+            <div>
+                <hr />
+                <Head text='默认数据 -> props形参 -> state对象'></Head>
+                <hr />
+            </div>
+        )
+
+        ReactDOM.render(
+            element,
+            document.querySelector('#abc')
+        )
+
+    </script>
+</body>
+
+</html>

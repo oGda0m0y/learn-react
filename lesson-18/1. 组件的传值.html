@@ -75,7 +75,7 @@
             }
 
             // 方法1: 绑定事件并传参, 注意用.bind调用时要改变this指向
-            handleClick1(myData,e){
+            handleClick1(myData, e){
                 console.log('方法1: 利用.bind, 绑定事件并传参')
                 console.log('this: ', this, '传入的参数: ', myData, '事件源: ', e.target)
             }
@@ -89,11 +89,11 @@
                 console.log('绑定事件源实现点击时更新数据')
                 console.log('this', this)
                 this.setState({
-                    abc: '值已被改变'
+                    abc: '绑定函数: handleClick -> 更新state对象'
                 })
 
             }
-            handleClick3 (myData,e) {
+            handleClick3 (myData, e) {
                 console.log('方法3: 利用箭头函数, 绑定事件并传参')
                 console.log('this: ', this, '传入的参数: ', myData, '事件源: ', e.target)
             }
@@ -114,8 +114,8 @@
                             // 第二个参数是 数据
                             // 最后一个参数是 事件对象
                         }
-                        {//<header onClick={this.handleClick1.bind(this,'方法1: 利用.bind, 可以绑定事件并传参',e)}> { this.state.abc && this.state.abc } </header>
-                        }
+                        <header onClick={this.handleClick1.bind(this,'方法1: 利用.bind, 可以绑定事件并传参')}> { this.state.abc && this.state.abc } </header>
+                        
                         {
                             // 对渲染的元素进行事件绑定
                             // 2. 普通方法, 直接指定函数名, 但不适合传参, 因为一旦加括号就绘制自动执行
@@ -127,8 +127,8 @@
                             // 对渲染的元素进行事件绑定
                             // 3. 利用箭头函数, 因为箭头函数不会自动执行
                         }
-                        {//<header onClick={(e)=>{ this.handleClick3('方法3: 利用箭头函数, 可以绑定事件并传参',e) }}> { this.state.abc && this.state.abc } </header>
-                        }
+                        <header onClick={(e)=>{ this.handleClick3('方法3: 利用箭头函数, 可以绑定事件并传参', e) }}> { this.state.abc && this.state.abc } </header>
+                        
 
                     </div>
 
